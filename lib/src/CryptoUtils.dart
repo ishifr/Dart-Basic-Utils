@@ -921,7 +921,7 @@ class CryptoUtils {
   ///
   static ECSignature ecSign(ECPrivateKey privateKey, Uint8List dataToSign,
       {String algorithmName = 'SHA-1/ECDSA'}) {
-    var signer = Signer(algorithmName) as ECDSASigner;
+    var signer =  ECDSASigner();
 
     var params = ParametersWithRandom(
         PrivateKeyParameter<ECPrivateKey>(privateKey), getSecureRandom());
@@ -1005,7 +1005,7 @@ class CryptoUtils {
   static bool ecVerify(
       ECPublicKey publicKey, Uint8List signedData, ECSignature signature,
       {String algorithm = 'SHA-1/ECDSA'}) {
-    final verifier = Signer(algorithm) as ECDSASigner;
+    final verifier = ECDSASigner();
 
     verifier.init(false, PublicKeyParameter<ECPublicKey>(publicKey));
 
